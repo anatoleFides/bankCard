@@ -1,24 +1,26 @@
-var BankCard = function (cash) {
-  var balance = cash
-  var testPin = (function (pin) {
-    return prompt('Enter Your Pincode') === pin
-  }) (prompt('Set Your Pincode'))
-  var testSum = (function (sum) {
+const bankCard = function (cash) {
+  let pin = prompt('Set your pin')
+  let balance = cash
+  const testPin = function () {
+    return prompt('Enter your pin') === pin
+  }
+  const testSum = function (sum) {
+    if (sum <= 0) return console.log('invalid format sum')
     return sum <= balance
-  }) ()
-  var getFromBalance = function (sum) {
+  }
+  const getFromBalance = function (sum) {
     balance -= sum
     return sum
   }
   this.showBalance = function () {
-    return testPin ? balance : 'invalid pin'
+    return testPin() ? balance : cosole.log('invalid pin')
   }
   this.getCash = function () {
-    var sum = prompt('enter the sum')
-    if (!testPin) return console.error('invalid pin')
-    if (!testSum) return console.error('not enough money')
+    let sum = prompt('Enter your sum')
+    if (!testPin()) return console.log('invalid pin')
+    if (!testSum(sum)) return console.log('not enough money')
     return getFromBalance(sum)
   }
 }
 
-var card = new BankCard(10000)
+let card = new bankCard(10000)
