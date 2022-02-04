@@ -1,14 +1,14 @@
 function Card () {
-  let pin = prompt('Set your pin')
-  let cash = prompt('Your account balance')
+  var pin = prompt('Set your pin')
+  var cash = prompt('Your account balance')
 
   function testPin () {
     return prompt('Enter your pin') === pin 
   }
 
   function testSum () {
-    const sum = parseFloat(prompt('Enter your sum')) || 0
-    return sum > 0 ? sum : console.error('Wrong amount')
+    var sum = parseFloat(prompt('Enter your sum')) || 0
+    return sum > 0 ? sum : console.error('Wrong amount format')
   }
 
    this.showMoney = function () {
@@ -17,12 +17,13 @@ function Card () {
 
   this.getCash = function () {
     if (!testPin()) return console.error('Invalide pid')
-    const sum = testSum()
+    var sum = testSum()
+    if (typeof sum !== 'number') return
     if (sum <= cash) {
       cash -= sum
       console.log(sum)
     } else {
-      console.log('Not enough money ')
+      console.error('Not enough money ')
     }
   }
 }
